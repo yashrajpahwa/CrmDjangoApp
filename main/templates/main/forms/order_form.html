@@ -1,0 +1,36 @@
+{% extends 'main/main_template.html' %} {% load static %} {% block content %}
+<div class="container">
+    <div class="row mx-auto rounded">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body">
+                <form action="" method="post">
+                    <!-- product form -->
+                    {% csrf_token %}
+                    {{ form.management_form }}
+                    {% for field in form %}
+                    <div class="row">
+                       
+                            <div class="text-capitalize my-1">
+                                {{field.name}}
+                            </div>
+                       
+                       
+                            <div class="row px-md-3 px-lg-3 px-xxl-3 px-2">{{field}}</div>
+                        
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-6"> <a class="btn btn-block btn-warning" href="{% url 'home' %}">Cancel</a>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="btn btn-block btn-success" type="submit" name="submit">
+                        </div>
+                    </div>
+                </form>
+                <!-- end product form -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

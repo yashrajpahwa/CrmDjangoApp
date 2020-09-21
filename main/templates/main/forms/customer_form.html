@@ -1,0 +1,38 @@
+{% extends 'main/main_template.html' %}
+{% load static %}{% block content %}
+
+<div class="container rounded mx-auto">
+    <div class="row mx-auto">
+        <div class="col-md-10 mx-auto">
+            <div class="card card-body mx-auto">
+                <!-- customer form -->
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for field in customerForm %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-capitalize my-1">
+                                {{field.name}}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row px-md-3 px-lg-3 px-xxl-3 px-2">{{field}}</div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-6"> <a class="btn btn-block btn-warning" href="{% url 'home' %}">Cancel</a>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="btn btn-block btn-success" type="submit" name="submit">
+                        </div>
+                    </div>
+                </form>
+                <!-- end customer form -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
