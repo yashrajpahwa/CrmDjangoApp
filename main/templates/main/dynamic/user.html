@@ -2,6 +2,20 @@
 {% block content %}
 {%  include 'main/status.html' %}
 
-<h3>User Profile</h3>
+<table class="table table-sm">
+    <tr>
+        <th>Product</th>
+        <th>Date Orderd</th>
+        <th>Status</th>
+    </tr>
+
+    {% for i in order %}
+    <tr>
+        <td>{{i.product}}</td>
+        <td>{{i.date_created}}</td>
+        <td>{{i.status}}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 {% endblock content %}

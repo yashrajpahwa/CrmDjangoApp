@@ -55,9 +55,14 @@ def customer(request, cid):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['customer'])
+@allowed_users(allowed_roles=['customer', 'admin'])
 def userPage(request):
-    context = {}
+    customerOrders = request.user.customer.order_set.all()
+    total_order = customerOrders.count()
+    delivered = customerOrders.filter(status='Delivered').count()
+    pending = customerOrders.filter(status='Delivery Pending').count()
+    context = {'order': customerOrders, 'total_order': total_order,
+               'delivered': delivered, 'pending': pending}
     return render(request, 'main/dynamic/user.html', context)
 
 
@@ -220,6 +225,7 @@ def registerPage(request):
             username = registerForm.cleaned_data.get('username')
             setRegisterGroup = Group.objects.get(name='customer')
             user.groups.add(setRegisterGroup)
+
             messages.success(request, 'An account for ' +
                              username+' has been successfully registered.')
             return redirect('/login')
