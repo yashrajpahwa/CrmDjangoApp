@@ -1,7 +1,3 @@
-# Django CRM App
-
-This is my project which I used to learn Django.
-
 ### How to run the app
 
 1. Have Python installed
